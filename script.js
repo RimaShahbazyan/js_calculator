@@ -20,7 +20,7 @@ function solveInsideBrackets ( exp ) {
     let nums = exp.split('*').join('_').split('/').join('_').
         split('-').join('_').split('+').join('_').
             split('^').join('_').split('%').join('_').split('_');
-    let operations=exp.split(/[1.0-9]/).join("").split("");
+    let operations=exp.split(/[0.0-9]/).join("").split("");
 
     if(isNaN(Number(nums[0]))|| isNaN(Number(nums[nums.length-1])) || nums.length-1 !== operations.length)
     {
@@ -29,10 +29,50 @@ function solveInsideBrackets ( exp ) {
     let newNums =[];
     let newOperations = [];
     let previousWasReplaced =false;
+    for (let i = operations.length -1, j=0; i > 0 ; i--) {
+        if (operations[i] === '^') {
+            if (previousWasReplaced) {
+                newNums[j - 1] = Math.pow( Number(nums[i - 1]),newNums[j - 1]);
+
+            }
+            else {
+                newNums[j] = Math.pow( Number(nums[i ]),Number(nums[i+1]));
+                j++;
+            }
+            previousWasReplaced = true;
+        }
+        else
+        {
+            newOperations.push(operations[i]);
+            if(!previousWasReplaced) {
+                newNums.push (nums[i]);
+                j++;
+            }
+            previousWasReplaced = false;
+        }
+    }
+    if(!previousWasReplaced)
+    {
+        newNums.push (nums[0]);
+    }
+    newNums.reverse();
+    newOperations.reverse();
     for (let i = 0, j=0; i <operations.length ; i++) {
 
+        if (operations[i]==='%')
+        {
+            if (previousWasReplaced)
+            {
+                newNums[j-1] = newNums[j-1]%nums[i+1];
 
-        if (operations[i]==='*')
+            }
+            else {
+                newNums[j] = nums[i] % nums[i + 1];
+                j++;
+            }
+            previousWasReplaced = true;
+        }
+        else if (operations[i]==='*')
         {
             if (previousWasReplaced)
             {
