@@ -11,7 +11,9 @@ function deleteChar () {
 }
 
 function solve () {
-solveInsideBrackets(problem);
+
+    document.getElementById ("prob").innerHTML = solveInsideBrackets(problem);
+    problem="";
 }
 
 function solveInsideBrackets ( exp ) {
@@ -20,15 +22,15 @@ function solveInsideBrackets ( exp ) {
             split('^').join('_').split('%').join('_').split('_');
     let operations=exp.split(/[1.0-9]/).join("").split("");
 
-    if(isNaN(Number(nums[0]))|| isNaN(Number(nums[length-1])))
+    if(isNaN(Number(nums[0]))|| isNaN(Number(nums[nums.length-1])) || nums.length-1 !== operations.length)
     {
-        return false;
+       return false;
     }
     let newNums =[];
     let newOperations = [];
     let previousWasReplaced =false;
-    for (let i = 0; i <operations.length ; i++) {
-        let j=0;
+    for (let i = 0, j=0; i <operations.length ; i++) {
+
 
         if (operations[i]==='*')
         {
@@ -60,12 +62,28 @@ function solveInsideBrackets ( exp ) {
         {
             newOperations.push(operations[i]);
             if(!previousWasReplaced) {
-                newNums.push (nums[i - 1]);
+                newNums.push (nums[i]);
+                j++;
             }
             previousWasReplaced = false;
         }
     }
-    alert(nums);
-    alert(operations);
+    if(!previousWasReplaced)
+    {
+        newNums.push (nums[nums.length-1]);
+    }
+    let result = Number(newNums[0]);
+    for (let i = 0; i < newOperations.length ; i++) {
+
+        if (newOperations[i]==='+')
+        {
+            result += Number(newNums[i+1]);
+        }
+        else if (newOperations[i]==='-')
+        {
+           result -= newNums[i+1];
+        }
+    }
+    return result;
 
 }
