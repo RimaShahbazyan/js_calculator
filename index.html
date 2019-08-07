@@ -1,0 +1,90 @@
+<head>
+    <script src=script.js></script>
+    <link rel="stylesheet" href="Style.css">
+    <title>My Calculator</title>
+</head>
+<header>
+
+    <div class="heading"><h1> My Calculator </h1></div>
+</header>
+<body class="body">
+<div class="problem-box-container">
+    <div class="problem-box" id="prob"> </div>
+    <img src="baseline_arrow_back_black_18dp.png" class="delete-arrow" onclick="deleteChar()">
+</div>
+<div class="container">
+
+    <div class="operationSet">
+        <button class="num" onclick="printClicked('%')">
+            %
+        </button>
+        <button class="num" onclick="printClicked('^')">
+            ^
+        </button>
+        <button class="num" onclick="printClicked('(')">
+            (
+        </button>
+        <button class="num" onclick=printClicked(')')>
+            )
+        </button>
+    </div>
+    <div class="numbers">
+
+
+        <button class="num" onclick="printClicked(1)">
+            1
+        </button>
+        <button class="num" onclick="printClicked(2)">
+            2
+        </button>
+        <button class="num" onclick="printClicked(3)">
+            3
+        </button>
+        <button class="num" onclick="printClicked(4)">
+            4
+        </button>
+        <button class="num" onclick="printClicked(5)">
+            5
+        </button>
+        <button class="num" onclick="printClicked(6)">
+            6
+        </button>
+        <button class="num" onclick="printClicked(7)">
+            7
+        </button>
+        <button class="num" onclick="printClicked(8)">
+            8
+        </button>
+        <button class="num" onclick="printClicked(9)">
+            9
+        </button>
+        <button class="num" onclick="printClicked('.')">
+            .
+        </button>
+        <button class="num" onclick="printClicked(0)">
+            0
+        </button>
+        <button class="num" onclick="solve()">
+            =
+        </button>
+
+    </div>
+    <div class="operationSet">
+        <button class="num" onclick="printClicked('*')">
+            *
+        </button>
+        <button class="num" onclick="printClicked('/')">
+            /
+        </button>
+        <button class="num" onclick="printClicked('+')">
+            +
+        </button>
+        <button class="num" onclick=printClicked('-')>
+            -
+        </button>
+    </div>
+
+</div>
+
+
+</body>
