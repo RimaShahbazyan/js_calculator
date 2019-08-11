@@ -1,4 +1,4 @@
-let problem = "5*(2+0)^2-20";
+let problem = "";
 
 function printClicked ( e ) {
     problem += e;
